@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "/home/vscode/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ArchiveNet.Console/ArchiveNet.Console.csproj",
+      "projectUniqueName": "/workspaces/ArchiveNET7/src/ArchiveNet.Console/ArchiveNet.Console.csproj",
       "projectName": "ArchiveNet.Console",
-      "projectPath": "/home/ArchiveNet.Console/ArchiveNet.Console.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/home/ArchiveNet.Console/obj/",
+      "projectPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Console/ArchiveNet.Console.csproj",
+      "packagesPath": "/home/vscode/.nuget/packages/",
+      "outputPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Console/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "/home/vscode/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"

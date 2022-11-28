@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj": {}
+    "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj": {}
   },
   "projects": {
-    "/home/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj": {
+    "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
+        "projectUniqueName": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
         "projectName": "ArchiveNet.Web.API",
-        "projectPath": "/home/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/home/ArchiveNet.Web.API/obj/",
+        "projectPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
+        "packagesPath": "/home/vscode/.nuget/packages/",
+        "outputPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "/home/vscode/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"

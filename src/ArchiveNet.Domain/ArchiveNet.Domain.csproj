@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.100.23" />
-  	</ItemGroup>
-  	<ItemGroup>
-		<ProjectReference Include="..\ArchiveNet.Domain\ArchiveNet.Domain.csproj" />
-	</ItemGroup>
 </Project>

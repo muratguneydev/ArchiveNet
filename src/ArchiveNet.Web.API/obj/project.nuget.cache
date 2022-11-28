@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/ZhVotK3A936Qwet9JK2IhiMYs+9rRuEokDORUZm/4XeqRpWFxXOEvdyaSZ+nz5ww0QrqGvB4r8qYmqwoiO84g==",
+  "dgSpecHash": "FKE+vWmASLppopeHlL4lY1lCpexcRbUDCGJxWg93anfn9T8LBJIFY+kaXYm7NwnOrsIiH7VabQfmweRoOTfZKQ==",
   "success": true,
-  "projectFilePath": "/home/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
+  "projectFilePath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

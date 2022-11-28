@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y1j58u8huJdFYzHGGnmKrzEgqDgtRJoVe92aW6UghI+HJml5orErmVWzTdEJo1Gyv+rL1cmabwtqcVcCUAEbLg==",
+  "dgSpecHash": "7EiIGI/RImI9gzas/BW22OFLoXBtUMX+J2j4Jzo+3cl2r7Fv5WL7Nt/ZI5MsUlu5/J9FLatNuhUaVZ9r0IuBzw==",
   "success": true,
-  "projectFilePath": "/home/ArchiveNet.Console/ArchiveNet.Console.csproj",
+  "projectFilePath": "/workspaces/ArchiveNET7/src/ArchiveNet.Console/ArchiveNet.Console.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
