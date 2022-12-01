@@ -408,7 +408,7 @@
           "build/NUnit.props": {}
         }
       },
-      "NUnit.Analyzers/3.3.0": {
+      "NUnit.Analyzers/3.5.0": {
         "type": "package"
       },
       "NUnit3TestAdapter/4.2.1": {
@@ -1758,18 +1758,19 @@
         "nunit.nuspec"
       ]
     },
-    "NUnit.Analyzers/3.3.0": {
-      "sha512": "gyRc0qmXUIjHaTcHTWZDHK5ccOF6cLEOGQJ6Fj5JWKh8/W1XzPFC6zGXRu5sDNSxfKaNeQRmkdz3M73ArQkY1A==",
+    "NUnit.Analyzers/3.5.0": {
+      "sha512": "uvYCAqtZrY9RZc1ErVREvcYr828uy4RmTZYfMPN5FrahvJp/b2+QEgsJISzU3cbxLc9IBBlEOBa9d4t6ejFM2Q==",
       "type": "package",
-      "path": "nunit.analyzers/3.3.0",
+      "path": "nunit.analyzers/3.5.0",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/nunit.analyzers.dll",
+        "docs/README.md",
         "images/nunit_256.png",
         "license.txt",
-        "nunit.analyzers.3.3.0.nupkg.sha512",
+        "nunit.analyzers.3.5.0.nupkg.sha512",
         "nunit.analyzers.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
@@ -2982,25 +2983,25 @@
     "net7.0": [
       "Microsoft.NET.Test.Sdk >= 17.3.2",
       "NUnit >= 3.13.3",
-      "NUnit.Analyzers >= 3.3.0",
+      "NUnit.Analyzers >= 3.5.0",
       "NUnit3TestAdapter >= 4.2.1",
       "coverlet.collector >= 3.1.2"
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "/home/vscode/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
+      "projectUniqueName": "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
       "projectName": "ArchiveNet.Tests.Unit",
-      "projectPath": "/home/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/home/ArchiveNet.Tests.Unit/obj/",
+      "projectPath": "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
+      "packagesPath": "/home/vscode/.nuget/packages/",
+      "outputPath": "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "/home/vscode/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -3034,7 +3035,7 @@
           },
           "NUnit.Analyzers": {
             "target": "Package",
-            "version": "[3.3.0, )"
+            "version": "[3.5.0, )"
           },
           "NUnit3TestAdapter": {
             "target": "Package",

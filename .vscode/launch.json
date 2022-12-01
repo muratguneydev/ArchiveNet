@@ -1,0 +1,45 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": ".NET Core Launch (Api)",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build Api",
+			"program": "${workspaceFolder}/src/ArchiveNet.Web.API/bin/Debug/net7.0/ArchiveNet.Web.API.dll",
+			"args": ["--urls", "http://localhost:6123;https://localhost:6124"],
+			"cwd": "${workspaceFolder}",
+			"stopAtEntry": false,
+			"console": "internalConsole"
+		},
+		{
+			"name": "Angular client",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build Api",
+			"program": "${workspaceFolder}/src/ArchiveNet.Web.GUI/bin/Debug/net7.0/ArchiveNet.Web.GUI.dll",
+			"args": ["--urls", "http://localhost:5123;https://localhost:5124"],
+			"cwd": "${workspaceFolder}",
+			"stopAtEntry": false,
+			"console": "internalConsole"
+		},{
+			"name": ".NET Core Attach",
+			"type": "coreclr",
+			"request": "attach"
+		},
+		{
+			"name": ".NET Core Launch (console)",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build console",
+			"program": "${workspaceFolder}/src/ArchiveNet.Console/bin/Debug/net7.0/ArchiveNet.Console.dll",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"stopAtEntry": false,
+			"console": "integratedTerminal"
+		}
+	]
+}

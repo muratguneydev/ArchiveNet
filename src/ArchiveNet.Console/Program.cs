@@ -1,2 +1,22 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
+using ArchiveNet.Domain;
+using ArchiveNet.Repository;
+
 Console.WriteLine("Hello, World!");
+
+var config = new AmazonDynamoDBConfig()
+{
+	ServiceURL = "http://192.168.5.166:8000",
+	AuthenticationRegion = "eu-west-2"
+};
+var amazonDynamoDbClient = new AmazonDynamoDBClient(config);
+var amazonDynamoDBContext = new DynamoDBContext(amazonDynamoDbClient);
+
+//var artistCommand = new ArtistCommand(amazonDynamoDBContext);
+//artistCommand.Insert(new Artist(new Name("Murat", "Guney")));
+
+var artQuery = new ArtQuery(amazonDynamoDBContext);
+var data = await artQuery.Get();
+Console.Read();

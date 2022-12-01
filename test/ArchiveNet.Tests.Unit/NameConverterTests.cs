@@ -1,15 +1,11 @@
 namespace ArchiveNet.Tests.Unit;
 
-public class Tests
+public class NameConverterTests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
     public void Test1()
     {
+		//var converter = new NameConverter();
         Assert.Pass();
     }
 }

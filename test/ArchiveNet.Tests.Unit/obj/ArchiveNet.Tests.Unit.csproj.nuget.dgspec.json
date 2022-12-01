@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj": {}
+    "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj": {}
   },
   "projects": {
-    "/home/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj": {
+    "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
+        "projectUniqueName": "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
         "projectName": "ArchiveNet.Tests.Unit",
-        "projectPath": "/home/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/home/ArchiveNet.Tests.Unit/obj/",
+        "projectPath": "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
+        "packagesPath": "/home/vscode/.nuget/packages/",
+        "outputPath": "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "/home/vscode/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -48,7 +48,7 @@
             },
             "NUnit.Analyzers": {
               "target": "Package",
-              "version": "[3.3.0, )"
+              "version": "[3.5.0, )"
             },
             "NUnit3TestAdapter": {
               "target": "Package",
