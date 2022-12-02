@@ -889,6 +889,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "ArchiveNet.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/ArchiveNet.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ArchiveNet.Domain.dll": {}
+        }
       }
     }
   },
@@ -2977,10 +2987,16 @@
         "system.xml.xdocument.4.0.11.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "ArchiveNet.Domain/1.0.0": {
+      "type": "project",
+      "path": "../../src/ArchiveNet.Domain/ArchiveNet.Domain.csproj",
+      "msbuildProject": "../../src/ArchiveNet.Domain/ArchiveNet.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "ArchiveNet.Domain >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.3.2",
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.5.0",
@@ -3012,7 +3028,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/workspaces/ArchiveNET7/src/ArchiveNet.Domain/ArchiveNet.Domain.csproj": {
+              "projectPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Domain/ArchiveNet.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

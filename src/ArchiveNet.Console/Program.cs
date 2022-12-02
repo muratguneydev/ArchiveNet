@@ -14,8 +14,8 @@ var config = new AmazonDynamoDBConfig()
 var amazonDynamoDbClient = new AmazonDynamoDBClient(config);
 var amazonDynamoDBContext = new DynamoDBContext(amazonDynamoDbClient);
 
-//var artistCommand = new ArtistCommand(amazonDynamoDBContext);
-//artistCommand.Insert(new Artist(new Name("Murat", "Guney")));
+var artCommand = new ArtCommand(amazonDynamoDBContext);
+await artCommand.Insert(new ArtRecord(new Art(new Artist(new Name("Murat Guney"), new Name[] {}), "My best friend", 2)));
 
 var artQuery = new ArtQuery(amazonDynamoDBContext);
 var data = await artQuery.Get();

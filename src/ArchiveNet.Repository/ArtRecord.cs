@@ -6,21 +6,20 @@ namespace ArchiveNet.Repository;
 [DynamoDBTable("ArtWork")]
 public class ArtRecord
 {
-	private readonly Art art;
-
 	public ArtRecord()
 	{
-		
+		this.ArtistName = string.Empty;
+		this.AlsoKnownAsCsv = string.Empty;
+		this.Title = string.Empty;
+		this.Stars = default;
 	}
 
 	public ArtRecord(Art art)
 	{
-		this.art = art;
-
 		this.ArtistName = art.Artist.Name.ToString();
 		this.AlsoKnownAsCsv = string.Join(',', art.Artist.AlsoKnownAs.Select(aka => aka.ToString()));
 		this.Title = art.Title;
-		this.Stars = this.art.Stars;
+		this.Stars = art.Stars;
 	}
 
 	public string ArtistName { get; set; }

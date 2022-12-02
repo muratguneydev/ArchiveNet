@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wUy5CRdq/i6LAVq7TgqDbuwMd8C85HH3e5FLPlXU9eFFTELjo3X438WCRfLb/24OPwVNthZqa4xpFr9eEDFenw==",
+  "dgSpecHash": "X5spSutN+u6Nopt4CdVKJveUiGbWD8W626v8TjpvoAWApeldN5gUKJOwytDj63vsYIr2VFFOGh4zvQB5SEz3fg==",
   "success": true,
   "projectFilePath": "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
   "expectedPackageFiles": [
