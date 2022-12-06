@@ -1,21 +1,14 @@
-﻿using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
+﻿using Amazon.DynamoDBv2.DataModel;
 using ArchiveNet.Domain;
 
 namespace ArchiveNet.Repository;
 public class ArtQuery
 {
-	private DynamoDBContext amazonDynamoDBContext;
+	private IDynamoDBContext amazonDynamoDBContext;
 
 	public ArtQuery(IDynamoDBContext amazonDynamoDBContext)
 	{
-		var config = new AmazonDynamoDBConfig()
-		{
-			ServiceURL = "http://192.168.5.166:8000",
-			AuthenticationRegion = "eu-west-2"
-		};
-		var amazonDynamoDbClient = new AmazonDynamoDBClient(config);
-		this.amazonDynamoDBContext = new DynamoDBContext(amazonDynamoDbClient);//amazonDynamoContext
+		this.amazonDynamoDBContext = amazonDynamoDBContext;
 	}
 
 	public async Task<IEnumerable<Art>> Get()
@@ -23,6 +16,10 @@ public class ArtQuery
 		var data = await this.amazonDynamoDBContext.ScanAsync<ArtRecord>(null).GetRemainingAsync();
 		return data
 			.Select(artRecord => new Art(
-									artRecord.GetArtist(), artRecord.Title, artRecord.Stars));
+										artRecord.GetArtist(),
+										artRecord.Title,
+										artRecord.Rating,
+										artRecord.EntryDateTime,
+										artRecord.Uri));
 	}
 }

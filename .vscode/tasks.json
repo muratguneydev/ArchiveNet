@@ -69,6 +69,22 @@
 			}
 		},
 		{
+			"label": "build copy data console",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"build",
+				"${workspaceFolder}/src/ArchiveNet.CopyData.Console/ArchiveNet.CopyData.Console.csproj",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"problemMatcher": "$msCompile",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
 			"label": "build Api",
 			"command": "dotnet",
 			"type": "process",

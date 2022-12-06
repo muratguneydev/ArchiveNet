@@ -5,22 +5,23 @@ namespace ArchiveNet.Repository;
 //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBContext.ArbitraryDataMapping.html
 public class ArtCommand
 {
-	private readonly DynamoDBContext amazonDynamoDBContext;
+	private readonly IDynamoDBContext amazonDynamoDBContext;
 
 	public ArtCommand(IDynamoDBContext amazonDynamoDBContext)
 	{
-		var config = new AmazonDynamoDBConfig()
-		{
-			ServiceURL = "http://192.168.5.166:8000",
-			AuthenticationRegion = "eu-west-2"
-		};
-		var amazonDynamoDbClient = new AmazonDynamoDBClient(config);
-		this.amazonDynamoDBContext = new DynamoDBContext(amazonDynamoDbClient);
+		this.amazonDynamoDBContext = amazonDynamoDBContext;
 	}
 
 	public Task Insert(ArtRecord art)
 	{
 		return this.amazonDynamoDBContext.SaveAsync(art);
+	}
+
+	public Task Insert(IEnumerable<ArtRecord> arts)
+	{
+		var bookBatch = this.amazonDynamoDBContext.CreateBatchWrite<ArtRecord>();
+		bookBatch.AddPutItems(arts);
+		return bookBatch.ExecuteAsync();
 	}
 }
 

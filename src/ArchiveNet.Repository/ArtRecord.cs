@@ -11,7 +11,8 @@ public class ArtRecord
 		this.ArtistName = string.Empty;
 		this.AlsoKnownAsCsv = string.Empty;
 		this.Title = string.Empty;
-		this.Stars = default;
+		this.Rating = default;
+		this.Uri = string.Empty;
 	}
 
 	public ArtRecord(Art art)
@@ -19,13 +20,17 @@ public class ArtRecord
 		this.ArtistName = art.Artist.Name.ToString();
 		this.AlsoKnownAsCsv = string.Join(',', art.Artist.AlsoKnownAs.Select(aka => aka.ToString()));
 		this.Title = art.Title;
-		this.Stars = art.Stars;
+		this.EntryDateTime = art.EntryDateTime;
+		this.Rating = art.Rating;
+		this.Uri = art.Uri.ToString();
 	}
 
 	public string ArtistName { get; set; }
 	public string AlsoKnownAsCsv { get; set; }
 	public string Title { get; set; }
-	public int Stars { get; set; }
+	public DateTime EntryDateTime { get; set; }
+	public int Rating { get; set; }
+	public string Uri { get; set; }
 
 	public Artist GetArtist() => ArtistConverter.Convert(this);
 }

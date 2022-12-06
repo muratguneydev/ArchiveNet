@@ -40,6 +40,17 @@
 			"cwd": "${workspaceFolder}",
 			"stopAtEntry": false,
 			"console": "integratedTerminal"
+		},
+		{
+			"name": ".NET Core Launch (migration console)",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build copy data console",
+			"program": "${workspaceFolder}/src/ArchiveNet.CopyData.Console/bin/Debug/net7.0/ArchiveNet.CopyData.Console.dll",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"stopAtEntry": false,
+			"console": "integratedTerminal"
 		}
 	]
 }
