@@ -18,5 +18,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\ArchiveNet.Domain\ArchiveNet.Domain.csproj" />
+		<ProjectReference Include="..\..\src\ArchiveNet.Repository\ArchiveNet.Repository.csproj" />
 	</ItemGroup>
 </Project>

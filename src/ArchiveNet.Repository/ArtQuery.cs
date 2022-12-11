@@ -2,16 +2,22 @@
 using ArchiveNet.Domain;
 
 namespace ArchiveNet.Repository;
-public class ArtQuery
+
+public class ArtQuery : IArtQuery
 {
 	private IDynamoDBContext amazonDynamoDBContext;
 
-	public ArtQuery(IDynamoDBContext amazonDynamoDBContext)
+	public ArtQuery(ArchiveDbConfig archiveDbConfig)//pass context?
 	{
-		this.amazonDynamoDBContext = amazonDynamoDBContext;
+		this.amazonDynamoDBContext = new DBContextFactory(archiveDbConfig).Get();
 	}
 
-	public async Task<IEnumerable<Art>> Get()
+	public void Dispose()
+	{
+		this.amazonDynamoDBContext.Dispose();
+	}
+
+	public virtual async Task<IEnumerable<Art>> Get()
 	{
 		var data = await this.amazonDynamoDBContext.ScanAsync<ArtRecord>(null).GetRemainingAsync();
 		return data

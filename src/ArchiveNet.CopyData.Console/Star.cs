@@ -7,11 +7,6 @@ public class Star
 
 		public ICollection<SceneStar> SceneStars { get; set; } = new List<SceneStar>();
 
-		public object Clone()
-		{
-			return this.MemberwiseClone();
-		}
-
 		public ImageUrl ImageUrl =>
 			(this.PhotoUrl == null || !this.PhotoUrl.StartsWith("http"))
 				? EmptyImageUrl.ImageUrl

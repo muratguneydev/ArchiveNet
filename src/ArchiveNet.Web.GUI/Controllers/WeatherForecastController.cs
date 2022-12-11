@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ArchiveNet.Web.GUI.Controllers;
+namespace ArchiveNet.Web.Gui.Controllers;
 
 [ApiController]
 [Route("[controller]")]

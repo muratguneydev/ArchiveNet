@@ -115,7 +115,6 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "AWSSDK.DynamoDBv2 >= 3.7.100.23",
       "ArchiveNet.Repository >= 1.0.0"
     ]
   },
@@ -159,12 +158,6 @@
     "frameworks": {
       "net7.0": {
         "targetAlias": "net7.0",
-        "dependencies": {
-          "AWSSDK.DynamoDBv2": {
-            "target": "Package",
-            "version": "[3.7.100.23, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

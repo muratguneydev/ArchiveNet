@@ -4,7 +4,7 @@ using ArchiveNet.Domain;
 namespace ArchiveNet.Repository;
 
 [DynamoDBTable("ArtWork")]
-public class ArtRecord
+public record ArtRecord
 {
 	public ArtRecord()
 	{
@@ -22,7 +22,7 @@ public class ArtRecord
 		this.Title = art.Title;
 		this.EntryDateTime = art.EntryDateTime;
 		this.Rating = art.Rating;
-		this.Uri = art.Uri.ToString();
+		this.Uri = art.Uri;
 	}
 
 	public string ArtistName { get; set; }
@@ -33,18 +33,6 @@ public class ArtRecord
 	public string Uri { get; set; }
 
 	public Artist GetArtist() => ArtistConverter.Convert(this);
-}
-
-public static class ArtistConverter
-{
-	public static Artist Convert(ArtRecord artRecord)
-	{
-		return new Artist(
-			new Name(artRecord.ArtistName),
-			artRecord.AlsoKnownAsCsv.Split(',').Select(nameString => new Name(nameString)));
-	}
-
-
 }
 
 /*

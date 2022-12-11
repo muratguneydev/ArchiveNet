@@ -1,12 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Data.SQLite;
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
+﻿using System.Data.SQLite;
 using ArchiveNet.Domain;
 using ArchiveNet.Repository;
 using Microsoft.EntityFrameworkCore;
-
-Console.WriteLine("Hello, World!");
 
 var connectionStringBuilder = new SQLiteConnectionStringBuilder
 	{
@@ -14,22 +9,14 @@ var connectionStringBuilder = new SQLiteConnectionStringBuilder
 	};
 var sourceConnectionString = connectionStringBuilder.ToString();
 
-var destinationDatabaseConfig = new AmazonDynamoDBConfig()
-{
-	ServiceURL = "http://192.168.5.166:8000",
-	AuthenticationRegion = "eu-west-2"
-};
-var amazonDynamoDbClient = new AmazonDynamoDBClient(destinationDatabaseConfig);
 
-using (var amazonDynamoDBContext = new DynamoDBContext(amazonDynamoDbClient))
+using (var artCommand = new ArtCommand(new ArchiveDbConfig("http://192.168.5.166:8000", "eu-west-2")))
 using (var context = new ArchiveDbContext(sourceConnectionString))
 {
     var allScenes = context.Scenes!
 				.AsNoTracking()
 				.Include(s => s.SceneStars)
 				.ThenInclude(ss => ss.Star);
-
-	var artCommand = new ArtCommand(amazonDynamoDBContext);
 
 	var hashSet = new HashSet<string>();
 	foreach (var scene in allScenes)
@@ -39,13 +26,12 @@ using (var context = new ArchiveDbContext(sourceConnectionString))
 			string sceneName = PopulateUniqueName(hashSet, scene, sceneStar);
 
 			await artCommand.Insert(
-				new ArtRecord(
 							new Art(
-								new Artist(new Name(sceneStar.Star.Name), EmptyAlsoKnownAs.AlsoKnownAs),
+								new Artist(new Name(sceneStar.Star.Name)),
 								sceneName,
 								scene.Rating,
 								scene.EntryDateTime,
-								scene.Url)));
+								scene.Url));
 		}
 	}
 }

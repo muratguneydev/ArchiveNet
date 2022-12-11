@@ -1,4 +1,4 @@
-namespace ArchiveNet.Web.GUI;
+namespace ArchiveNet.Web.Gui;
 
 public class WeatherForecast
 {

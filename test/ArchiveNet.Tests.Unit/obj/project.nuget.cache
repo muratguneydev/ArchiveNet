@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "X5spSutN+u6Nopt4CdVKJveUiGbWD8W626v8TjpvoAWApeldN5gUKJOwytDj63vsYIr2VFFOGh4zvQB5SEz3fg==",
+  "dgSpecHash": "dnLZqmDl+fCCFeGO0xJ6cSN8J5IYfO2vRtaV5o/f327cc6sCRDJkhzgsF1f6UjqJb7mmMF1CfTvXXDMvp5vPqw==",
   "success": true,
   "projectFilePath": "/workspaces/ArchiveNET7/test/ArchiveNet.Tests.Unit/ArchiveNet.Tests.Unit.csproj",
   "expectedPackageFiles": [
+    "/home/vscode/.nuget/packages/awssdk.core/3.7.100.23/awssdk.core.3.7.100.23.nupkg.sha512",
+    "/home/vscode/.nuget/packages/awssdk.dynamodbv2/3.7.100.23/awssdk.dynamodbv2.3.7.100.23.nupkg.sha512",
     "/home/vscode/.nuget/packages/coverlet.collector/3.1.2/coverlet.collector.3.1.2.nupkg.sha512",
     "/home/vscode/.nuget/packages/microsoft.codecoverage/17.3.2/microsoft.codecoverage.17.3.2.nupkg.sha512",
     "/home/vscode/.nuget/packages/microsoft.csharp/4.0.1/microsoft.csharp.4.0.1.nupkg.sha512",
