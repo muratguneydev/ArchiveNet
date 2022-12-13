@@ -10,7 +10,7 @@
 			"request": "launch",
 			"preLaunchTask": "build Api",
 			"program": "${workspaceFolder}/src/ArchiveNet.Web.API/bin/Debug/net7.0/ArchiveNet.Web.API.dll",
-			"args": ["--urls", "http://localhost:6123;https://localhost:6124"],
+			"args": ["--urls=http://localhost:6123;https://localhost:6124", "--environment=Development"],
 			"cwd": "${workspaceFolder}",
 			"stopAtEntry": false,
 			"console": "internalConsole"
@@ -21,7 +21,7 @@
 			"request": "launch",
 			"preLaunchTask": "build Api",
 			"program": "${workspaceFolder}/src/ArchiveNet.Web.GUI/bin/Debug/net7.0/ArchiveNet.Web.GUI.dll",
-			"args": ["--urls", "http://localhost:5123;https://localhost:5124"],
+			"args": ["--urls=http://localhost:5123;https://localhost:5124", "--environment=Development"],
 			"cwd": "${workspaceFolder}",
 			"stopAtEntry": false,
 			"console": "internalConsole"

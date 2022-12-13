@@ -1,0 +1,53 @@
+1. Create an empty solution or use an existing solution on Host. This can be achieved by running “dotnet new webapp” in a dotnet container and copying the folder to the host:
+docker cp 1df720c4d95c:/ArchiveNET7/ /Code/
+
+2. Install Dev Containers extension on VS Code.
+
+3. Open the solution folder with VS Code
+
+4. Create a dev container:
+	1. Open the Command pallette in VS Code by using Ctrl+Shift+P (Linux/Windows) or Cmd+Shift+P (macOS) and search for Remote Containers
+	2. Choose Add Development Container Configuration Files.
+	3. Select C# (.NET)
+	4. version latest or 7.0
+5. Open in remote container
+When VS Code detects the two files we created in the previous step at the root of a folder, it will prompt whether we want to “Reopen in Container”.
+An alternative approach to reopen the current folder inside the dev container is to once again open the Command pallette and search for Remote Containers. Next, select “Reopen in Container”
+
+6. Containers are stateless
+By nature, containers are stateless. This means that all changes performed inside the container is lost when the container stops and starts. The solution to this is mounting persistent data volumes inside the container.
+This is something the VS Code extension handles for us automatically when it comes to the project folder we reopened from the local computer
+
+
+
+To resolve this error:
+bind source path does not exist:
+
+Go to Docker -> Settings -> Resources -> File Sharing -> + add /Code to the shared folders -> Apply & Restart
+
+Or when you start the container from Docker desktop, provide:
+Volumes -> Host Path and Container Path
+
+
+
+GIT
+
+	•	git init
+	•	git add .
+	•	git commit -m "Add existing project files to Git"
+	•	git remote add origin https://github.com/muratguneydev/ArchiveNet.git
+	•	git branch -M main
+	•	git push -u origin main
+—>username m...g...dev
+—>password personal access token
+
+git add:
+	•	git add -A stages all changes
+	•	git add . stages new files and modifications, without deletions (on the current directory and its subdirectories).
+	•	git add -u stages modifications and deletions, without new files
+
+
+dotnet new gitignore
+
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+

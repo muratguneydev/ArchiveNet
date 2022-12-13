@@ -17,15 +17,29 @@ public class ArtQuery : IArtQuery
 		this.amazonDynamoDBContext.Dispose();
 	}
 
-	public virtual async Task<IEnumerable<Art>> Get()
+	public virtual async Task<IEnumerable<Art>> GetAsync()
 	{
 		var data = await this.amazonDynamoDBContext.ScanAsync<ArtRecord>(null).GetRemainingAsync();
 		return data
-			.Select(artRecord => new Art(
-										artRecord.GetArtist(),
-										artRecord.Title,
-										artRecord.Rating,
-										artRecord.EntryDateTime,
-										artRecord.Uri));
+			.Select(GetArt);
+	}
+
+	public virtual async Task<IEnumerable<Art>> GetAsync(Name artistName)
+	{
+		var data = await this.amazonDynamoDBContext
+			.QueryAsync<ArtRecord>(artistName.Value)
+			.GetRemainingAsync();
+		return data
+			.Select(GetArt);
+	}
+
+	private static Art GetArt(ArtRecord artRecord)
+	{
+		return new Art(
+						artRecord.GetArtist(),
+						artRecord.Title,
+						artRecord.Rating,
+						artRecord.EntryDateTime,
+						artRecord.Uri);
 	}
 }

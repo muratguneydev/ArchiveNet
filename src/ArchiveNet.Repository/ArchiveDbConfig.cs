@@ -1,13 +1,23 @@
 namespace ArchiveNet.Repository;
 
-public record ArchiveDbConfig(string ServiceUrl, string Region);
+public record ArchiveDbConfig
+{
+	public ArchiveDbConfig(string serviceUrl, string region)
+	{
+		if (string.IsNullOrWhiteSpace(serviceUrl))
+		{
+			throw new ArgumentException($"'{nameof(serviceUrl)}' cannot be null or whitespace.", nameof(serviceUrl));
+		}
 
-// public record EmptyArchiveDbConfig : ArchiveDbConfig
-// {
-// 	private static EmptyArchiveDbConfig archiveDbConfig = new EmptyArchiveDbConfig();
-// 	private EmptyArchiveDbConfig() : base(string.Empty, string.Empty)
-// 	{
-// 	}
+		if (string.IsNullOrWhiteSpace(region))
+		{
+			throw new ArgumentException($"'{nameof(region)}' cannot be null or whitespace.", nameof(region));
+		}
+		ServiceUrl = serviceUrl;
+		Region = region;
+	}
 
-// 	public static EmptyArchiveDbConfig ArchiveDbConfig => archiveDbConfig;
-// }
+	public string ServiceUrl { get; }
+	public string Region { get; }
+}
+
