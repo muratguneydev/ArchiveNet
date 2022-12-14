@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "ArchiveNet.Web.Gui"
+  "defaultProject": "ArchiveNet.Web.Gui",
+  "cli": {
+    "analytics": false
+  }
 }
