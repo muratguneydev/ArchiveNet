@@ -10,9 +10,15 @@
 			]
 		}
 	},
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/angular-cli:1": {}
+	},
 	"mounts": [
         "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind"
-    ]
+    ],
+	"postCreateCommand": "chmod +x ./.devcontainer/postcreatecommand.sh && ./.devcontainer/postcreatecommand.sh"
+	
+	//"postCreateCommand": "dotnet dev-certs https"
 
 	// "mounts": [
     //     "source=${localEnv:HOME}/.aws,target=/$HOME/.aws,type=bind,consistency=cached"

@@ -24,7 +24,11 @@
 			"args": ["--urls=http://localhost:5123;https://localhost:5124", "--environment=Development"],
 			"cwd": "${workspaceFolder}",
 			"stopAtEntry": false,
-			"console": "internalConsole"
+			"console": "internalConsole",
+			"env": {
+				"ASPNETCORE_ENVIRONMENT": "Development",
+				"ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+			}
 		},{
 			"name": ".NET Core Attach",
 			"type": "coreclr",
