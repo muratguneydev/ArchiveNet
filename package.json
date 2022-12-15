@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "run-script-os": "^1.1.6"
-  },
-  "dependencies": {
-    "@angular-devkit/build-angular": "^15.0.3"
-  }
-}
