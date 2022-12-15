@@ -1,2 +1,9 @@
+Just create a plain angular app without dotnet.
+
+--these are already part of package.json otherwise we could add to the sh file.
 npm install --save-dev run-script-os
 npm i @angular-devkit/build-angular
+
+Running the Gui app from VSCode debugger doesn't work.
+Do dotnet run from the Gui folder.
+Use npx kill-port 44410 if the port gets stuck.
