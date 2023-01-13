@@ -19,7 +19,9 @@ public class ArtQuery : IArtQuery
 
 	public virtual async Task<IEnumerable<Art>> GetAsync()
 	{
-		var data = await this.amazonDynamoDBContext.ScanAsync<ArtRecord>(null).GetRemainingAsync();
+		var data = await this.amazonDynamoDBContext
+			.ScanAsync<ArtRecord>(null)
+			.GetRemainingAsync();
 		return data
 			.Select(GetArt);
 	}
@@ -28,6 +30,16 @@ public class ArtQuery : IArtQuery
 	{
 		var data = await this.amazonDynamoDBContext
 			.QueryAsync<ArtRecord>(artistName.Value)
+			.GetRemainingAsync();
+		return data
+			.Select(GetArt);
+	}
+
+	public virtual async Task<IEnumerable<Art>> GetAsync(long lastNumberOfDays)
+	{
+		var entryDateOffsetSince2000 = (DateTime.UtcNow.Date - ArtRecord.Date2000).Days - lastNumberOfDays;
+		var data = await this.amazonDynamoDBContext
+			.QueryAsync<ArtRecord>(entryDateOffsetSince2000, new DynamoDBOperationConfig {IndexName = "EntryDateOffsetIndex"})
 			.GetRemainingAsync();
 		return data
 			.Select(GetArt);

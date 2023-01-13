@@ -1,0 +1,10 @@
+https://angular.io/start
+https://angular.io/guide/example-apps-list
+https://angular.io/generated/zips/getting-started/getting-started.zip
+https://angular.io/start/start-deployment
+
+cd src/ArchiveNet.Web.Gui/
+Under ArchiveNet.Web.Gui run:
+npm install -> this will create the node_modules directory
+ng build -> this will crate the dist directory
+ng serve --port 5555

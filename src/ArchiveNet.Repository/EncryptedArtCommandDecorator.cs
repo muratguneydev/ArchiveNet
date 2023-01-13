@@ -29,4 +29,9 @@ public class EncryptedArtCommandDecorator : IArtCommand
 			arts.Select(art => new ArtEncryptedDecorator(art, this.cryptor))
 		);
 	}
+
+	public Task Update(Art art)
+	{
+		return this.artCommand.Update(new ArtEncryptedDecorator(art, this.cryptor));
+	}
 }

@@ -1,0 +1,28 @@
+<form (ngSubmit)="update(art)">
+
+	<div class="form-group">
+	  <label for="title">
+		Title
+	  </label>
+	  <input id="title" type="text" [(ngModel)]="art.title" name="title" #title="ngModel">
+	</div>
+  
+	<div>
+	  <label for="rating">
+		Rating
+	  </label>
+	  <input id="rating" type="text" [(ngModel)]="art.rating" name="rating" #rating="ngModel">
+	</div>
+
+	<div>
+		<label for="uri">
+		  Uri
+		</label>
+		<input id="uri" type="text" [(ngModel)]="art.uri" name="uri" #uri="ngModel">
+	  </div>
+  
+	<button class="button" type="submit">Update</button>
+  
+  </form>
+
+  <span>{{resultMessage}}</span>

@@ -1,5 +1,4 @@
 using ArchiveNet.Domain;
-using ArchiveNet.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArchiveNet.Web.Api.Controllers;
@@ -9,11 +8,13 @@ namespace ArchiveNet.Web.Api.Controllers;
 public class ArtController : ControllerBase
 {
 	private readonly IArtQuery artQuery;
+	private readonly IArtCommand artCommand;
 	private readonly ILogger<ArtController> logger;
 
-	public ArtController(IArtQuery artQuery, ILogger<ArtController> logger)
+	public ArtController(IArtQuery artQuery, IArtCommand artCommand, ILogger<ArtController> logger)
 	{
 		this.artQuery = artQuery;
+		this.artCommand = artCommand;
 		this.logger = logger;
 	}
 
@@ -23,9 +24,40 @@ public class ArtController : ControllerBase
 		return this.artQuery.GetAsync();
 	}
 
-	[HttpGet("artistName")]
+	//https://127.0.0.1:6124/swagger/index.html
+	//https://127.0.0.1:6124/Art/{artistName}
+	[HttpGet("{artistName}")]
     public Task<IEnumerable<Art>> GetAsync(string artistName)
 	{
 		return this.artQuery.GetAsync(new Name(artistName));
+	}
+
+//https://localhost:6124/Art/GetByDateOffset/0
+	[Route("~/Art/GetByDateOffset/{dateOffset}")]
+	[HttpGet]
+    public Task<IEnumerable<Art>> GetByDateOffset(int dateOffset)
+	{
+		return this.artQuery.GetAsync(dateOffset);
+	}
+
+	[HttpPut]
+    public async Task<IActionResult> Put(Art art)
+	{
+		try
+			{
+				await this.artCommand.Update(art);
+				
+				return Ok("Art item updated successfully.");
+			}
+			catch (ArgumentException ae)//catches ArgumentNullException too
+			{
+				return BadRequest(ae.Message);
+			}
+			catch (KeyNotFoundException knfe)
+			{
+				return NotFound(knfe.Message);
+			}
+
+		
 	}
 }

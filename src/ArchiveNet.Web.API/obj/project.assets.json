@@ -555,11 +555,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.Api/ArchiveNet.Web.Api.csproj",
-      "projectName": "ArchiveNet.Web.Api",
-      "projectPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.Api/ArchiveNet.Web.Api.csproj",
+      "projectUniqueName": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
+      "projectName": "ArchiveNet.Web.API",
+      "projectPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
       "packagesPath": "/home/vscode/.nuget/packages/",
-      "outputPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.Api/obj/",
+      "outputPath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/vscode/.nuget/NuGet/NuGet.Config"

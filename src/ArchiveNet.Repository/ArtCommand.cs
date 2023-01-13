@@ -25,8 +25,23 @@ public class ArtCommand : IArtCommand
 
 	public virtual Task Insert(IEnumerable<Art> arts)
 	{
-		var bookBatch = this.amazonDynamoDBContext.CreateBatchWrite<ArtRecord>();
-		bookBatch.AddPutItems(arts.Select(art => new ArtRecord(art)));
-		return bookBatch.ExecuteAsync();
+		var batch = this.amazonDynamoDBContext.CreateBatchWrite<ArtRecord>();
+		batch.AddPutItems(arts.Select(art => new ArtRecord(art)));
+		return batch.ExecuteAsync();
+	}
+
+	public virtual async Task Update(Art art)
+	{
+		// var data = (await this.amazonDynamoDBContext
+		// 	.LoadAsync<IEnumerable<ArtRecord>>(art.Artist.Name.Value)
+		// ).ToList();
+
+		// data.Remove(data.Single(artItem => artItem.Uri == art.Uri));
+		// data.Add(new ArtRecord(art));
+		
+		// await this.amazonDynamoDBContext.SaveAsync(data);
+		await this.amazonDynamoDBContext.DeleteAsync(new ArtRecord(art));
+		await this.Insert(art);
+
 	}
 }

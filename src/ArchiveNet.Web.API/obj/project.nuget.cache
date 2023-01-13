@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p88yK/4/HaHWUrimO4dBufq3Dbr5rlxTEQqaNo4E6wLGT01XToSD5SfBYNOZcb7qgQKN5GAz5FijlqZdTdK+7g==",
+  "dgSpecHash": "7+tsjNDB6hKaMo5uWGPHC1a8R7uOGwP8XnbD1hYbZgv0zELxlmRIYm+WTllJf2QX6XDdc97DempDVfrI4RyXCQ==",
   "success": true,
-  "projectFilePath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.Api/ArchiveNet.Web.Api.csproj",
+  "projectFilePath": "/workspaces/ArchiveNET7/src/ArchiveNet.Web.API/ArchiveNet.Web.API.csproj",
   "expectedPackageFiles": [
     "/home/vscode/.nuget/packages/awssdk.core/3.7.100.23/awssdk.core.3.7.100.23.nupkg.sha512",
     "/home/vscode/.nuget/packages/awssdk.dynamodbv2/3.7.100.23/awssdk.dynamodbv2.3.7.100.23.nupkg.sha512",

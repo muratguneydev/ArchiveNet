@@ -2,9 +2,26 @@ using ArchiveNet.Domain;
 using ArchiveNet.Repository;
 using ArchiveNet.Web.Api;
 
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = GetApplicationBuilderWithChangedContentRootPath(args);
 
 // Add services to the container.
+var guiCORSOrigin = builder.Configuration["CORSOrigins:Gui"];
+if (guiCORSOrigin == null)
+	throw new Exception("CORSOrigins:Gui not found.");
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins(guiCORSOrigin
+							//"http://localhost:5555"
+                                              //,"http://www.contoso.com"
+											  ).AllowAnyHeader()
+                                                  .AllowAnyMethod();
+                      });
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,7 +41,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization();
 
 app.MapControllers();

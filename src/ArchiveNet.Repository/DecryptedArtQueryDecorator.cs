@@ -29,4 +29,10 @@ public class DecryptedArtQueryDecorator : IArtQuery
 		return (await this.artQuery.GetAsync(new NameEncryptedDecorator(artistName, this.cryptor)))
 			.Select(art => new ArtDecryptedDecorator(art, this.cryptor));
 	}
+
+	public async Task<IEnumerable<Art>> GetAsync(long lastNumberOfDays)
+	{
+		return (await this.artQuery.GetAsync(lastNumberOfDays))
+			.Select(art => new ArtDecryptedDecorator(art, this.cryptor));
+	}
 }
