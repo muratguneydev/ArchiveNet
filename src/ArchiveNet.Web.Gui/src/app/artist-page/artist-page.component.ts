@@ -24,17 +24,18 @@ export class ArtistPageComponent {
 	  ngOnInit() {
 		// First get the product id from the current route.
 		const routeParams = this.route.snapshot.paramMap;
-		const artistNameFromRoute = routeParams.get('artistname')!;
-		console.log('artistNameFromRoute: ', artistNameFromRoute);
-		this.artist = new Artist(new Name(artistNameFromRoute), new EmptyNameCollection());
+		const artistIdFromRoute = parseInt(routeParams.get('artistid')!);
+		console.log('artistNameFromRoute: ', artistIdFromRoute);
+		// this.artist = new Artist(new Name(artistIdFromRoute), new EmptyNameCollection());
 		// Find the product that correspond with the id provided in route.
 		//this.artItems = this.artService.getArtItems(artistNameFromRoute);
 
-		this.artService.getArtItemsByArtist(artistNameFromRoute).subscribe(result => {
+		this.artService.getArtItemsByArtist(artistIdFromRoute).subscribe(result => {
 			console.log('Get art result: ', result);
 			//console.log('TransferHttp [GET] /api/scenes/allresult', result);
 			//let pagedResult = result as IScenePagedResult;
 			this.artItems = result;
+			this.artist = new Artist(artistIdFromRoute, new Name(''), new EmptyNameCollection());
 			//this.totalCount = result.totalCount;
 		});
 	  }

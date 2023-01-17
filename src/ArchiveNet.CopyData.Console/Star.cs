@@ -19,5 +19,8 @@ public class Star
 						(this.SceneStars.Sum(ss => ss.Scene.Rating) / this.SceneStars.Count)
 						+ (this.SceneStars.Count * 0.1)
 					);
+
+		public override int GetHashCode() => (int)this.Id;
+		
 		
 	}

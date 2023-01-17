@@ -1,14 +1,26 @@
 ﻿namespace ArchiveNet.Domain;
 
-public record Artist(Name Name, NameCollection AlsoKnownAs)
+public record Artist(int Id, Name Name, NameCollection AlsoKnownAs)
 {
 	public Artist()
-		: this(new Name(""), new NameCollection() )
+		: this(default, new Name(""), new NameCollection() )
 	{
 		
 	}
 	public Artist(Name name)
-		: this(name, new NameCollection())
+		: this(default, name, new NameCollection())
+	{
+		
+	}
+
+	public Artist(int id, Name name)
+		: this(id, name, new NameCollection())
+	{
+		
+	}
+
+	public Artist(int id)
+		: this(id, new Name(string.Empty), new NameCollection())
 	{
 		
 	}

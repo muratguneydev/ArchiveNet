@@ -30,7 +30,7 @@ import { EditableArtViewComponent } from './editable-art-view/editable-art-view.
 	FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
-      { path: 'art/:artistname', component: ArtistPageComponent },
+      { path: 'art/:artistid', component: ArtistPageComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent },

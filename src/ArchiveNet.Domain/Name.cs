@@ -39,4 +39,18 @@ public class NameCollection : List<Name> //: IEnumerable<Name>
 	// {
 	// 	return this.Names.GetEnumerator();
 	// }
+
+	public override bool Equals(object? obj)
+	{
+		var other = obj as NameCollection;
+		if (other == null)
+			return false;
+
+		return this.Names.OrderBy(name => name.Value).SequenceEqual(other.OrderBy(name => name.Value));
+	}
+
+	public override int GetHashCode()
+	{
+		return this.Names.Sum(name => name.GetHashCode());
+	}
 }

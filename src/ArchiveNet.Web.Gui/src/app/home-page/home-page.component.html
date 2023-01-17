@@ -1,3 +1,18 @@
+
+
+  <form (ngSubmit)="refresh(dateOffset)">
+
+	<div class="form-group">
+	  <label for="dateOffset1">
+		Date Offset
+	  </label>
+	  <input id="dateOffset1" type="text" [(ngModel)]="dateOffset" name="dateOffset1">
+	</div>
+
+  
+	<button class="button" type="submit">Update</button>
+  
+  </form>
 <div *ngIf="artItems">
 	<app-art-list [artItems]="artItems"></app-art-list>
 </div>

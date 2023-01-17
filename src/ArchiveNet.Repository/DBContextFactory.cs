@@ -12,14 +12,18 @@ public class DBContextFactory
 		this.archiveDbConfig = archiveDbConfig;
 	}
 
-	public IDynamoDBContext Get()
+	public virtual IDynamoDBContext GetDBContext()
+	{
+		return new DynamoDBContext(this.GetDBClient());
+	}
+
+	public virtual IAmazonDynamoDB GetDBClient()
 	{
 		var config = new AmazonDynamoDBConfig()
 		{
 			ServiceURL = this.archiveDbConfig.ServiceUrl,
 			AuthenticationRegion = this.archiveDbConfig.Region
 		};
-		var amazonDynamoDbClient = new AmazonDynamoDBClient(config);
-		return new DynamoDBContext(amazonDynamoDbClient);
+		return new AmazonDynamoDBClient(config);
 	}
 }

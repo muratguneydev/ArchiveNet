@@ -1,4 +1,6 @@
+using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.Model;
 using ArchiveNet.Domain;
 
 namespace ArchiveNet.Repository;
@@ -6,16 +8,22 @@ namespace ArchiveNet.Repository;
 //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBContext.ArbitraryDataMapping.html
 public class ArtCommand : IArtCommand
 {
+	private const string TableName = "ArtWork";
+
 	private readonly IDynamoDBContext amazonDynamoDBContext;
+	private readonly IAmazonDynamoDB amazonDynamoDBClient;
 
 	public ArtCommand(ArchiveDbConfig archiveDbConfig)
 	{
-		this.amazonDynamoDBContext = new DBContextFactory(archiveDbConfig).Get();
+		var contextFactory = new DBContextFactory(archiveDbConfig);
+		this.amazonDynamoDBContext = contextFactory.GetDBContext();
+		this.amazonDynamoDBClient = contextFactory.GetDBClient();
 	}
 
 	public void Dispose()
 	{
 		this.amazonDynamoDBContext.Dispose();
+		this.amazonDynamoDBClient.Dispose();
 	}
 
 	public virtual Task Insert(Art art)
@@ -32,16 +40,25 @@ public class ArtCommand : IArtCommand
 
 	public virtual async Task Update(Art art)
 	{
-		// var data = (await this.amazonDynamoDBContext
-		// 	.LoadAsync<IEnumerable<ArtRecord>>(art.Artist.Name.Value)
-		// ).ToList();
-
-		// data.Remove(data.Single(artItem => artItem.Uri == art.Uri));
-		// data.Add(new ArtRecord(art));
-		
-		// await this.amazonDynamoDBContext.SaveAsync(data);
-		await this.amazonDynamoDBContext.DeleteAsync(new ArtRecord(art));
-		await this.Insert(art);
+		//https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetItemCRUD.html#UpdateItemLowLevelDotNet
+		var request = new UpdateItemRequest
+		{
+			TableName = TableName,
+			Key = new ArtPrimaryKey(art).Key,
+			ExpressionAttributeNames = new Dictionary<string,string>() {
+				{"#T", "Title"},
+				{"#R", "Rating"}
+			},
+			ExpressionAttributeValues = new Dictionary<string, AttributeValue>()
+			{
+				{":title",new AttributeValue { S = art.Title}},
+				{":rating",new AttributeValue {N = art.Rating.ToString()}}
+			},
+			UpdateExpression = "SET #T = :title, #R = :rating"
+			//ReturnValues = "ALL_NEW" // Return all the attributes of the updated item.
+		};
+		var response = await this.amazonDynamoDBClient.UpdateItemAsync(request);
+		//response.Attributes to return the updated item's attributes. ReturnValues = "ALL_NEW"
 
 	}
 }

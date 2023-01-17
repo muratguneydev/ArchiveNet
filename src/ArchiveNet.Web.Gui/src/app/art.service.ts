@@ -16,8 +16,8 @@ export class ArtService {
     return this.http.get<Art[]>(`@api-art/Art`);
   }
 
-  getArtItemsByArtist(artistName: string) {
-    return this.http.get<Art[]>(`@api-art/Art/${artistName}`);
+  getArtItemsByArtist(artistId: number) {
+    return this.http.get<Art[]>(`@api-art/Art/GetByArtistId/${artistId}`);
   }
 
   getArtItemsByEntryDate(entryDateOffset: number) {

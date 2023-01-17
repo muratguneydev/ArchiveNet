@@ -8,8 +8,7 @@ public class ArtEncryptedDecoratorTests
 	public void EncryptedCorrectlyTest()
 	{
 		var art = ArtTestHelper.Create(
-			alsoKnownAsCsv: "JD,J Doe",
-			artistName: "John Doe",
+			artist: ArtistTestHelper.Create(name: "John Doe", alsoKnownAsCsv: "JD,J Doe"),
 			entryDateTime: new DateTime(2022, 5, 15),
 			rating: 5,
 			title: "My Song",
@@ -17,8 +16,7 @@ public class ArtEncryptedDecoratorTests
 		);
 
 		var expectedEncryptedArt = ArtEncryptedDecoratorTestHelper.Create(
-			alsoKnownAsCsv: "KE,K!Epf",
-			artistName: "Kpio!Epf",
+			artist: ArtistTestHelper.Create(name: "Kpio!Epf", alsoKnownAsCsv: "KE,K!Epf"),
 			entryDateTime: new DateTime(2022, 5, 15),
 			rating: 5,
 			title: "Nz!Tpoh",
@@ -37,8 +35,7 @@ public class ArtDecryptedDecoratorTests
 	public void DecryptedCorrectlyTest()
 	{
 		var encryptedArt = ArtEncryptedDecoratorTestHelper.Create(
-			alsoKnownAsCsv: "KE,K!Epf",
-			artistName: "Kpio!Epf",
+			artist: ArtistTestHelper.Create(name: "Kpio!Epf", alsoKnownAsCsv: "KE,K!Epf"),
 			entryDateTime: new DateTime(2022, 5, 15),
 			rating: 5,
 			title: "Nz!Tpoh",
@@ -46,8 +43,7 @@ public class ArtDecryptedDecoratorTests
 		);
 
 		var expectedDecryptedArt = ArtTestHelper.Create(
-			alsoKnownAsCsv: "JD,J Doe",
-			artistName: "John Doe",
+			artist: ArtistTestHelper.Create(name: "John Doe", alsoKnownAsCsv: "JD,J Doe"),
 			entryDateTime: new DateTime(2022, 5, 15),
 			rating: 5,
 			title: "My Song",
