@@ -19,6 +19,8 @@ import { ArtistPageComponent } from './artist-page/artist-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ArtEditComponent } from './art-edit/art-edit.component';
 import { EditableArtViewComponent } from './editable-art-view/editable-art-view.component';
+import { ArtistPhotoComponent } from './artist-photo/artist-photo.component';
+import { EncryptionService } from './EncryptionService';
 
 
 
@@ -42,7 +44,8 @@ import { EditableArtViewComponent } from './editable-art-view/editable-art-view.
 	 provide: HTTP_INTERCEPTORS,
 	 useClass: HttpCallInterceptor,
 	 multi: true
-   }
+   },
+   EncryptionService
   ],
   declarations: [
     AppComponent,
@@ -57,7 +60,8 @@ import { EditableArtViewComponent } from './editable-art-view/editable-art-view.
 	ArtViewComponent,
 	ArtEditComponent,
 	EditableArtViewComponent,
-	ArtistPageComponent
+	ArtistPageComponent,
+	ArtistPhotoComponent
   ],
   bootstrap: [
     AppComponent

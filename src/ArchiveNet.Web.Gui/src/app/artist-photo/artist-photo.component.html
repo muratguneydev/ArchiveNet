@@ -1,0 +1,6 @@
+﻿	<span *ngIf="imageUrl; else noPhotoBlock">
+		<img src="{{imageUrl}}" [ngClass]="{bigphoto: bigPhoto, smallphoto: smallPhoto}"/>
+	</span>
+	<ng-template #noPhotoBlock>
+		<span class='glyphicon glyphicon-user'></span>
+	</ng-template>

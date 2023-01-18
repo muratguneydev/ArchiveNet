@@ -15,6 +15,8 @@ export class ArtistPageComponent {
 
 	artist: Artist = new EmptyArtist();
 	artItems: Art[] = [];
+	//imageUrl: string = '';// = `${this.artist.name.value}_${this.artist.id}}`;
+	
 
 	constructor(
 		private route: ActivatedRoute,
@@ -35,8 +37,12 @@ export class ArtistPageComponent {
 			//console.log('TransferHttp [GET] /api/scenes/allresult', result);
 			//let pagedResult = result as IScenePagedResult;
 			this.artItems = result;
-			this.artist = new Artist(artistIdFromRoute, new Name(''), new EmptyNameCollection());
+			this.artist = this.artItems[0].artist;
+			//this.artist = new Artist(artistIdFromRoute, new Name(''), new EmptyNameCollection());
+			//this.imageUrl = this.imageUrl;
 			//this.totalCount = result.totalCount;
 		});
 	  }
+
+	  
 }

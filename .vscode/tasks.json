@@ -101,12 +101,12 @@
 			}
 		},
 		{
-			"label": "build Gui",
+			"label": "build Content Server",
 			"command": "dotnet",
 			"type": "process",
 			"args": [
 				"build",
-				"${workspaceFolder}/src/ArchiveNet.Web.Gui/ArchiveNet.Web.Gui.csproj",
+				"${workspaceFolder}/src/ArchiveNet.Content.Server/ArchiveNet.Content.Server.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],

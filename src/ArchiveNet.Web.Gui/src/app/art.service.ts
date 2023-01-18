@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { Product } from './products';
 import { Injectable } from '@angular/core';
 import { Art } from './dto/Art';
 import { Observable } from 'rxjs';
@@ -29,4 +28,5 @@ export class ArtService {
 	return this.http.put(`@api-art/Art`, art);
 	}
 }
+
 

@@ -29,7 +29,18 @@
 				"ASPNETCORE_ENVIRONMENT": "Development",
 				"ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
 			}
-		},{
+		},
+		{
+			"name": "Launch Content Server",
+			"type": "coreclr",
+			"request": "launch",
+			"program": "${workspaceFolder}/src/ArchiveNet.Content.Server/bin/Debug/net7.0/ArchiveNet.Content.Server.dll",
+			"args": ["--urls=http://localhost:5123;https://localhost:5124", "--environment=Development"],
+			"cwd": "${workspaceFolder}",
+			"stopAtEntry": false,
+			"console": "internalConsole"
+		},
+		{
 			"name": ".NET Core Attach",
 			"type": "coreclr",
 			"request": "attach"
