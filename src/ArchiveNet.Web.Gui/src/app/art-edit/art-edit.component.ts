@@ -13,11 +13,6 @@ export class ArtEditComponent {
 	art: Art = new Art;
 
 	resultMessage: string = '';
-	// editForm = this.formBuilder.group({
-	// 	title: '',
-	// 	rating: 0,
-	// 	uri: ''
-	//   });
 
     constructor(private artService: ArtService) { }
 

@@ -7,11 +7,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { CartComponent } from './cart/cart.component';
-import { ShippingComponent } from './shipping/shipping.component';
 import { HttpCallInterceptor } from './HttpCallInterceptor';
 import { ArtListComponent } from './art-list/art-list.component';
 import { ArtViewComponent } from './art-view/art-view.component';
@@ -33,9 +28,6 @@ import { EncryptionService } from './EncryptionService';
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
       { path: 'art/:artistid', component: ArtistPageComponent },
-      { path: 'products/:productId', component: ProductDetailsComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'shipping', component: ShippingComponent },
     ])
   ],
   providers: [
@@ -50,11 +42,6 @@ import { EncryptionService } from './EncryptionService';
   declarations: [
     AppComponent,
     TopBarComponent,
-    ProductListComponent,
-    ProductAlertsComponent,
-    ProductDetailsComponent,
-    CartComponent,
-    ShippingComponent,
 	HomePageComponent,
 	ArtListComponent,
 	ArtViewComponent,

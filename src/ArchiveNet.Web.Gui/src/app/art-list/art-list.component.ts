@@ -19,6 +19,8 @@ export class ArtListComponent {
 	  }
 }
 
+//this.product = products.find(product => product.id === productIdFromRoute);
+
 //import { arts } from '../arts';
 
 //arts = [...arts];
