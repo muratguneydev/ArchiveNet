@@ -1,0 +1,13 @@
+<form (ngSubmit)="update(artist)">
+
+	<div class="form-group">
+	  <label for="title">
+		Name
+	  </label>
+	  <input id="name" type="text" [(ngModel)]="artist.name.value" name="name" #name="ngModel">
+	</div>
+	<button class="button" type="submit">Update</button>
+  
+  </form>
+
+  <span>{{resultMessage}}</span>

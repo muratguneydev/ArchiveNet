@@ -16,8 +16,8 @@ import { ArtEditComponent } from './art-edit/art-edit.component';
 import { EditableArtViewComponent } from './editable-art-view/editable-art-view.component';
 import { ArtistPhotoComponent } from './artist-photo/artist-photo.component';
 import { EncryptionService } from './EncryptionService';
-
-
+import { ArtistEditComponent } from './artist-edit/artist-edit.component';
+import { ApplyDefaultArtistImageDirective } from './apply-default-artist-image.directive';
 
 @NgModule({
   imports: [
@@ -48,7 +48,9 @@ import { EncryptionService } from './EncryptionService';
 	ArtEditComponent,
 	EditableArtViewComponent,
 	ArtistPageComponent,
-	ArtistPhotoComponent
+	ArtistPhotoComponent,
+	ArtistEditComponent,
+ 	ApplyDefaultArtistImageDirective,
   ],
   bootstrap: [
     AppComponent

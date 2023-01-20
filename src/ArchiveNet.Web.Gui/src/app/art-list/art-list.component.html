@@ -1,14 +1,7 @@
 <h2>Art Collection</h2>
 
-<div *ngFor="let art of artItems">
-
-  <app-editable-art-view [art]="art" (edit)="onEdit(art)"></app-editable-art-view>
-
-  <!-- <app-art-alerts
-    [art]="art"
-    (notify)="onNotify()">
-  </app-art-alerts> -->
-
-</div>
+<ul *ngFor="let art of artItems">
+  <li><app-editable-art-view [art]="art" (edit)="onEdit(art)"></app-editable-art-view></li>
+</ul>
 
 <app-art-edit [art]="selectedArt"></app-art-edit>

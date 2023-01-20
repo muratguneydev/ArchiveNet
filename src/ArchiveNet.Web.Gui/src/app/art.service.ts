@@ -7,25 +7,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ArtService {
-  constructor(
-    private http: HttpClient
-  ) {}
+	constructor(
+		private http: HttpClient
+	) {}
 
-  getAllArtItems() {
-    return this.http.get<Art[]>(`@api-art/Art`);
-  }
+	getAllArtItems() {
+		return this.http.get<Art[]>(`@api-art/Art`);
+	}
 
-  getArtItemsByArtist(artistId: number) {
-    return this.http.get<Art[]>(`@api-art/Art/GetByArtistId/${artistId}`);
-  }
+	getArtItemsByArtist(artistId: number) {
+		return this.http.get<Art[]>(`@api-art/Art/GetByArtistId/${artistId}`);
+	}
 
-  getArtItemsByEntryDate(entryDateOffset: number) {
-    return this.http.get<Art[]>(`@api-art/Art/GetByDateOffset/${entryDateOffset}`);
-  }
+	getArtItemsByEntryDate(entryDateOffset: number) {
+		return this.http.get<Art[]>(`@api-art/Art/GetByDateOffset/${entryDateOffset}`);
+	}
 
-  update(art: Art): Observable<any> {
-	console.log(art);
-	return this.http.put(`@api-art/Art`, art);
+	update(art: Art): Observable<any> {
+		console.log(art);
+		return this.http.put(`@api-art/Art`, art);
 	}
 }
 

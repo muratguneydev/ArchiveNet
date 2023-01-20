@@ -22,4 +22,9 @@ public class EncryptedArtistCommandDecorator : IArtistCommand
 	{
 		return this.artistCommand.Insert(new ArtistEncryptedDecorator(artist, this.cryptor));
 	}
+
+	public Task Update(Artist artist)
+	{
+		return this.artistCommand.Update(new ArtistEncryptedDecorator(artist, this.cryptor));
+	}
 }

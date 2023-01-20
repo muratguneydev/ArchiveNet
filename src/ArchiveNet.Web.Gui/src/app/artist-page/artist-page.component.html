@@ -1,5 +1,9 @@
-{{artist.name.value}}
-<artist-photo *ngIf="artist" [artist]="artist" [smallPhoto]="true"></artist-photo>
+<div class="header">
+	<artist-photo *ngIf="artist" [artist]="artist" [bigPhoto]="true"></artist-photo>
+	{{artist.name.value}}
+</div>
 <div *ngIf="artItems">
 	<app-art-list [artItems]="artItems"></app-art-list>
 </div>
+
+<app-artist-edit [artist]="artist"></app-artist-edit>

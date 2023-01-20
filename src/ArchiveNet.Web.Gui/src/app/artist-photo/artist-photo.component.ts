@@ -14,6 +14,7 @@ export class ArtistPhotoComponent {
 	@Input() bigPhoto: boolean = false;
 	@Input() smallPhoto: boolean = false;
 
+	public defaultImageUrl = `${this.baseUrl.artistImage}/Default.png`;
     constructor(
 		private encryptionService: EncryptionService,
 		private baseUrl: BaseUrl) { }
@@ -24,3 +25,5 @@ export class ArtistPhotoComponent {
 		return this.encryptionService.encrypt(this.artist.name.value);
 	}
 }
+
+

@@ -1,5 +1,4 @@
 ﻿using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.Model;
 using ArchiveNet.Domain;
 
@@ -10,7 +9,7 @@ public class ArtQuery : IArtQuery
 	private const string TableName = "ArtWork";
 	private readonly IAmazonDynamoDB amazonDynamoDBClient;
 
-	public ArtQuery(ArchiveDbConfig archiveDbConfig)//pass context?
+	public ArtQuery(ArchiveDbConfig archiveDbConfig)
 	{
 		var contextFactory = new DBContextFactory(archiveDbConfig);
 		this.amazonDynamoDBClient = contextFactory.GetDBClient();

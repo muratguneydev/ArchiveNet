@@ -1,15 +1,12 @@
-<div *ngIf="art">
-	<a
-      [title]="art.artist.name.value + ' .'"
-      [routerLink]="['/art', art.artist.id]">
-      {{ art.artist.name.value }}
-    </a>
-	 - 
-	 <a href="{{ art.uri }}">
-	 {{ art.title }}
-   </a>
-   -
-   {{ art.rating}}
-   -
-	{{ art.entryDateTime }}
-</div>
+
+<a [title]="art.artist.name.value + ' .'" [routerLink]="['/art', art.artist.id]">
+	{{ art.artist.name.value }}
+</a>
+	- 
+	<a href="{{ art.uri }}">{{ art.title }}</a>
+-
+{{ art.entryDateTime | date:'mediumDate'}}
+
+	Rating: {{ art.rating}}
+
+

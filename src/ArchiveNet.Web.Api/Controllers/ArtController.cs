@@ -18,21 +18,6 @@ public class ArtController : ControllerBase
 		this.logger = logger;
 	}
 
-	// [HttpGet]
-    // public Task<IEnumerable<Art>> GetAsync()
-	// {
-	// 	return this.artQuery.GetAsync();
-	// }
-
-	// //https://127.0.0.1:6124/swagger/index.html
-	// //https://127.0.0.1:6124/Art/{artistName}
-	// [HttpGet("{artistName}")]
-    // public Task<IEnumerable<Art>> GetAsync(string artistName)
-	// {
-	// 	return this.artQuery.GetAsync(new Name(artistName));
-	// }
-
-	//https://127.0.0.1:6124/swagger/index.html
 	//https://127.0.0.1:6124/Art/{artistId}
 	[HttpGet("~/Art/GetByArtistId/{artistId}")]
     public Task<IEnumerable<Art>> GetAsync(int artistId)
@@ -40,7 +25,7 @@ public class ArtController : ControllerBase
 		return this.artQuery.GetAsync(artistId);
 	}
 
-//https://localhost:6124/Art/GetByDateOffset/0
+	//https://localhost:6124/Art/GetByDateOffset/0
 	[Route("~/Art/GetByDateOffset/{dateOffset}")]
 	[HttpGet]
     public Task<IEnumerable<Art>> GetByDateOffset(int dateOffset)

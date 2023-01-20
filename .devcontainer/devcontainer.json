@@ -14,7 +14,8 @@
 		"ghcr.io/devcontainers-contrib/features/angular-cli:1": {}
 	},
 	"mounts": [
-        "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind"
+        "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind",
+        "source=${localEnv:HOME}/ArchiveNET7/Content,target=/workspaces/Content,type=bind"
     ],
 	"postCreateCommand": "chmod +x ./.devcontainer/postcreatecommand.sh && ./.devcontainer/postcreatecommand.sh"
 	

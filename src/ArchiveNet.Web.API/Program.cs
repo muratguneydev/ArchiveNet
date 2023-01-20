@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen();//https://127.0.0.1:6124/swagger/index.html
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
@@ -62,6 +62,20 @@ static void RegisterArtCommand(WebApplicationBuilder builder, ArchiveDbConfig ar
 	builder.Services.AddSingleton<IArtCommand>(encryptedArtCommand);
 }
 
+static void RegisterArtistQuery(WebApplicationBuilder builder, ArchiveDbConfig archiveDbConfig)
+{
+	var artistQuery = new ArtistQuery(archiveDbConfig);
+	var decryptedArtistQuery = new DecryptedArtistQueryDecorator(artistQuery, new Cryptor());
+	builder.Services.AddSingleton<IArtistQuery>(decryptedArtistQuery);
+}
+
+static void RegisterArtistCommand(WebApplicationBuilder builder, ArchiveDbConfig archiveDbConfig)
+{
+	var artistCommand = new ArtistCommand(archiveDbConfig);
+	var encryptedArtistCommand = new EncryptedArtistCommandDecorator(artistCommand, new Cryptor());
+	builder.Services.AddSingleton<IArtistCommand>(encryptedArtistCommand);
+}
+
 static WebApplicationBuilder GetApplicationBuilderWithChangedContentRootPath(string[] appArgs)
 {
 	//default:
@@ -84,6 +98,10 @@ static void RegisterRepositoryServices(WebApplicationBuilder builder)
 	var archiveDbConfig = new ArchiveDbConfig(
 		builder.Configuration["DatabaseSettings:Url"]!,
 		builder.Configuration["DatabaseSettings:Region"]!);
+
 	RegisterArtQuery(builder, archiveDbConfig);
 	RegisterArtCommand(builder, archiveDbConfig);
+
+	RegisterArtistQuery(builder, archiveDbConfig);
+	RegisterArtistCommand(builder, archiveDbConfig);
 }

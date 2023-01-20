@@ -1,6 +1,7 @@
-﻿	<span *ngIf="imageUrl; else noPhotoBlock">
-		<img src="{{imageUrl}}" [ngClass]="{bigphoto: bigPhoto, smallphoto: smallPhoto}"/>
+﻿	<span>
+		<!-- <img src="{{imageUrl}}" onerror="this.src={defaultImageUrl}" [ngClass]="{bigphoto: bigPhoto, smallphoto: smallPhoto}"/> -->
+		<img src="{{imageUrl}}" [ngClass]="{bigphoto: bigPhoto, smallphoto: smallPhoto}" appApplyDefaultArtistImage appHideMissingArtistImage/>
+		<!-- <img [attr-src]="(imageUrl) || ('https://s3-us-west-2.amazonaws.com/s.cdpn.io/68939/angular-logo.png')"
+			onerror="this.src='https://placehold.it/200?text=on+Error'"/> -->
 	</span>
-	<ng-template #noPhotoBlock>
-		<span class='glyphicon glyphicon-user'></span>
-	</ng-template>
+	

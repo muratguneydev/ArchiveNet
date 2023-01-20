@@ -4,10 +4,10 @@ namespace ArchiveNet.Repository;
 
 public class DecryptedArtQueryDecorator : IArtQuery
 {
-	private readonly ArtQuery artQuery;
+	private readonly IArtQuery artQuery;
 	private readonly Cryptor cryptor;
 
-	public DecryptedArtQueryDecorator(ArtQuery artQuery, Cryptor cryptor)
+	public DecryptedArtQueryDecorator(IArtQuery artQuery, Cryptor cryptor)
 	{
 		this.artQuery = artQuery;
 		this.cryptor = cryptor;

@@ -8,3 +8,6 @@ Under ArchiveNet.Web.Gui run:
 npm install -> this will create the node_modules directory
 ng build -> this will crate the dist directory
 ng serve --port 5555
+
+
+ng generate directive ApplyDefaultArtistImage

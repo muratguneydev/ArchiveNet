@@ -35,7 +35,8 @@ static void UseStaticFiles(WebApplicationBuilder builder, WebApplication app)
 	app.UseStaticFiles(new StaticFileOptions
 	{
 		FileProvider = new PhysicalFileProvider(
-			   Path.Combine(builder.Environment.ContentRootPath, "Content", "Artist", "Images")),
+			   //Path.Combine(builder.Environment.ContentRootPath, "Content", "Artist", "Images")),
+			   Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath,@"../Content/Artist/Images"))),
 		RequestPath = "/Artist/Images",
 		OnPrepareResponse = ctx =>
 		{

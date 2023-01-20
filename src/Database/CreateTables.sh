@@ -1,3 +1,7 @@
+aws dynamodb delete-table \
+	--table-name ArtWork \
+	--endpoint-url http://192.168.5.166:8000
+
 aws dynamodb create-table \
 	--table-name ArtWork \
 	--attribute-definitions \
@@ -13,9 +17,9 @@ aws dynamodb create-table \
 	--global-secondary-indexes \
         "[
             {
-                \"IndexName\": \"UriIndex\",
+                \"IndexName\": \"SKIndex\",
                 \"KeySchema\": [
-					{\"AttributeName\":\"Uri\",\"KeyType\":\"HASH\"},
+					{\"AttributeName\":\"SK\",\"KeyType\":\"HASH\"},
 					{\"AttributeName\":\"ArtistId\",\"KeyType\":\"RANGE\"}
 				],
                 \"Projection\":{
