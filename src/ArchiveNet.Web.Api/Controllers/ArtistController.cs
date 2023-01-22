@@ -1,4 +1,5 @@
 using ArchiveNet.Domain;
+using ArchiveNet.Web.Api.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArchiveNet.Web.Api.Controllers;
@@ -20,24 +21,25 @@ public class ArtistController : ControllerBase
 
 	//https://127.0.0.1:6124/Artist
 	[HttpGet("~/Artist")]
-    public Task<IEnumerable<Artist>> GetAsync()
+    public async Task<IEnumerable<ArtistDto>> GetAsync()
 	{
-		return this.artistQuery.GetAsync();
+		return (await this.artistQuery.GetAsync())
+			.Select(artist => new ArtistDto(artist));
 	}
 
 	//https://127.0.0.1:6124/Artist/2
 	[HttpGet("~/Artist/{artistId}")]
-    public Task<Artist> GetAsync(int artistId)
+    public async Task<ArtistDto> GetAsync(int artistId)
 	{
-		return this.artistQuery.GetAsync(artistId);
+		return new ArtistDto(await this.artistQuery.GetAsync(artistId));
 	}
 
 	[HttpPut]
-    public async Task<IActionResult> Put(Artist artist)
+    public async Task<IActionResult> Put(ArtistDto artist)
 	{
 		try
 			{
-				await this.artistCommand.Update(artist);
+				await this.artistCommand.Update(artist.ToArtist());
 				
 				return Ok("Artist updated successfully.");
 			}

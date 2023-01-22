@@ -1,21 +1,7 @@
-﻿/*.star-photo {
-	height: 40px;
-}
-*/
-
-.bigphoto {
+﻿.bigphoto {
 	height: 200px;
 }
 
 .smallphoto {
 	height: 40px;
 }
-
-.popup-container.custom {
-	width: 200px; height: 200px; background: navy; color: #fff; text-align: center
-}
-
-/*This was for fixing the overlay problem for the pop up. We are using .modal-backdrop { display: none; } now.*/
-/* >>> #ngui-popup-overlay {
-	position: relative !important;
-} */

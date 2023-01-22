@@ -14,4 +14,8 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ArchiveNet.Repository\ArchiveNet.Repository.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+    	<InternalsVisibleTo Include="ArchiveNet.Tests.Integration" />
+</ItemGroup>
 </Project>

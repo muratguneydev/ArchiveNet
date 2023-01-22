@@ -7,13 +7,14 @@ import { BaseUrl } from './BaseUrl';
 })
 export class ApplyDefaultArtistImageDirective {
 
-  constructor(private el: ElementRef, private baseUrl: BaseUrl) { }
+  constructor(private el: ElementRef) { }
 
   @HostListener('error')
   public onError() {
 	  //console.log('Couldnt find image...');
 	  //this.el.nativeElement.style.display = "none";
-	  this.el.nativeElement.src = `${this.baseUrl.artistImage}/Default.png`;
+	  //this.el.nativeElement.src = `${this.baseUrl.artistImage}/Default.png`;
+	  this.el.nativeElement.src = `assets/Default.png`;
   }
 
 }

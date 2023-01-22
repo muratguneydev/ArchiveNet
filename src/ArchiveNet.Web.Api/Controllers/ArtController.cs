@@ -1,4 +1,5 @@
 using ArchiveNet.Domain;
+using ArchiveNet.Web.Api.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArchiveNet.Web.Api.Controllers;
@@ -20,37 +21,37 @@ public class ArtController : ControllerBase
 
 	//https://127.0.0.1:6124/Art/{artistId}
 	[HttpGet("~/Art/GetByArtistId/{artistId}")]
-    public Task<IEnumerable<Art>> GetAsync(int artistId)
+    public async Task<IEnumerable<ArtDto>> GetAsync(int artistId)
 	{
-		return this.artQuery.GetAsync(artistId);
+		return (await this.artQuery.GetAsync(artistId))
+			.Select(art => new ArtDto(art));
 	}
 
 	//https://localhost:6124/Art/GetByDateOffset/0
 	[Route("~/Art/GetByDateOffset/{dateOffset}")]
 	[HttpGet]
-    public Task<IEnumerable<Art>> GetByDateOffset(int dateOffset)
+    public async Task<IEnumerable<ArtDto>> GetByDateOffset(int dateOffset)
 	{
-		return this.artQuery.GetByDateOffsetAsync(dateOffset);
+		return (await this.artQuery.GetByDateOffsetAsync(dateOffset))
+			.Select(art => new ArtDto(art));
 	}
 
 	[HttpPut]
-    public async Task<IActionResult> Put(Art art)
+    public async Task<IActionResult> Put(ArtDto art)
 	{
 		try
-			{
-				await this.artCommand.Update(art);
-				
-				return Ok("Art item updated successfully.");
-			}
-			catch (ArgumentException ae)//catches ArgumentNullException too
-			{
-				return BadRequest(ae.Message);
-			}
-			catch (KeyNotFoundException knfe)
-			{
-				return NotFound(knfe.Message);
-			}
-
-		
+		{
+			await this.artCommand.Update(art.ToArt());
+			
+			return Ok("Art item updated successfully.");
+		}
+		catch (ArgumentException ae)//catches ArgumentNullException too
+		{
+			return BadRequest(ae.Message);
+		}
+		catch (KeyNotFoundException knfe)
+		{
+			return NotFound(knfe.Message);
+		}
 	}
 }
