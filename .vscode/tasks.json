@@ -129,6 +129,18 @@
 			"problemMatcher": "$msCompile"
 		},
 		{
+			"label": "build integration tests",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"build",
+				"${workspaceFolder}/tests/ArchiveNet.Tests.Integration/ArchiveNet.Tests.Integration.csproj",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"problemMatcher": "$msCompile"
+		},
+		{
 			"label": "publish",
 			"command": "dotnet",
 			"type": "process",

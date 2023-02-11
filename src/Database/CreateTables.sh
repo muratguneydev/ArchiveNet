@@ -1,6 +1,9 @@
+
+#$1: http://192.168.5.166:8000
+
 aws dynamodb delete-table \
 	--table-name ArtWork \
-	--endpoint-url http://192.168.5.166:8000
+	--endpoint-url $1
 
 aws dynamodb create-table \
 	--table-name ArtWork \
@@ -13,7 +16,7 @@ aws dynamodb create-table \
 		AttributeName=EntryDateOffsetSince2000,AttributeType=N \
 	--key-schema AttributeName=ArtistId,KeyType=HASH AttributeName=SK,KeyType=RANGE \
 	--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
-	--endpoint-url http://192.168.5.166:8000 \
+	--endpoint-url $1 \
 	--global-secondary-indexes \
         "[
             {

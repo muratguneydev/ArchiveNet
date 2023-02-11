@@ -5,8 +5,8 @@
 	"image": "mcr.microsoft.com/devcontainers/dotnet:0-7.0",
 	"customizations": {
 		"vscode": {
-		  "extensions": [
-			"formulahendry.dotnet-test-explorer"
+			"extensions": [
+				"formulahendry.dotnet-test-explorer"
 			]
 		}
 	},
@@ -17,7 +17,10 @@
         "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind",
         "source=${localEnv:HOME}/ArchiveNET7/Content,target=/workspaces/Content,type=bind"
     ],
-	"postCreateCommand": "chmod +x ./.devcontainer/postcreatecommand.sh && ./.devcontainer/postcreatecommand.sh"
+	"postCreateCommand": "chmod +x ./.devcontainer/postcreatecommand.sh && ./.devcontainer/postcreatecommand.sh",
+	"runArgs": [
+		"--env-file",".devcontainer/devcontainer.env"
+	]
 	
 	//"postCreateCommand": "dotnet dev-certs https"
 

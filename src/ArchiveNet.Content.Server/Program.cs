@@ -3,10 +3,11 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddEnvironmentVariables(prefix: "ARCHIVENET_CONTENT_");
+
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -36,7 +37,8 @@ static void UseStaticFiles(WebApplicationBuilder builder, WebApplication app)
 	{
 		FileProvider = new PhysicalFileProvider(
 			   //Path.Combine(builder.Environment.ContentRootPath, "Content", "Artist", "Images")),
-			   Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath,@"../Content/Artist/Images"))),
+			   //Path.GetFullPath(Path.Combine(builder.Environment.ContentRootPath,@"../Content/Artist/Images"))),
+			builder.Configuration["ARTIST_IMAGE_DIRECTORY"]!),
 		RequestPath = "/Artist/Images",
 		OnPrepareResponse = ctx =>
 		{

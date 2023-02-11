@@ -19,7 +19,6 @@ public class ArtController : ControllerBase
 		this.logger = logger;
 	}
 
-	//https://127.0.0.1:6124/Art/{artistId}
 	[HttpGet("~/Art/GetByArtistId/{artistId}")]
     public async Task<IEnumerable<ArtDto>> GetAsync(int artistId)
 	{
@@ -27,7 +26,6 @@ public class ArtController : ControllerBase
 			.Select(art => new ArtDto(art));
 	}
 
-	//https://localhost:6124/Art/GetByDateOffset/0
 	[Route("~/Art/GetByDateOffset/{dateOffset}")]
 	[HttpGet]
     public async Task<IEnumerable<ArtDto>> GetByDateOffset(int dateOffset)
@@ -36,6 +34,7 @@ public class ArtController : ControllerBase
 			.Select(art => new ArtDto(art));
 	}
 
+	//https://localhost:6124/Art
 	[HttpPut]
     public async Task<IActionResult> Put(ArtDto art)
 	{
@@ -44,6 +43,26 @@ public class ArtController : ControllerBase
 			await this.artCommand.Update(art.ToArt());
 			
 			return Ok("Art item updated successfully.");
+		}
+		catch (ArgumentException ae)//catches ArgumentNullException too
+		{
+			return BadRequest(ae.Message);
+		}
+		catch (KeyNotFoundException knfe)
+		{
+			return NotFound(knfe.Message);
+		}
+	}
+
+	//https://localhost:6124/Art
+	[HttpPost]
+    public async Task<IActionResult> Post(ArtDto art)
+	{
+		try
+		{
+			await this.artCommand.Insert(art.ToArt());
+			
+			return Ok("Art item inserted successfully.");
 		}
 		catch (ArgumentException ae)//catches ArgumentNullException too
 		{

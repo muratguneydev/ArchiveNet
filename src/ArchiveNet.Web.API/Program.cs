@@ -2,32 +2,20 @@ using ArchiveNet.Domain;
 using ArchiveNet.Repository;
 using ArchiveNet.Web.Api;
 
-var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = GetApplicationBuilderWithChangedContentRootPath(args);
 
 // Add services to the container.
-var guiCORSOrigin = builder.Configuration["CORSOrigins:Gui"];
-if (guiCORSOrigin == null)
-	throw new Exception("CORSOrigins:Gui not found.");
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy  =>
-                      {
-                          policy.WithOrigins(guiCORSOrigin
-							//"http://localhost:5555"
-                                              //,"http://www.contoso.com"
-											  ).AllowAnyHeader()
-                                                  .AllowAnyMethod();
-                      });
-});
+builder.Configuration.AddEnvironmentVariables(prefix: "ARCHIVENET_API_");
+var corsPolicyName = AddCors(builder);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();//https://127.0.0.1:6124/swagger/index.html
 
-builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
+// builder.Configuration.AddEnvironmentVariables(prefix: "ARCHIVENET_API_");
+
+//builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
 RegisterRepositoryServices(builder);
 
@@ -41,7 +29,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(corsPolicyName);
 app.UseAuthorization();
 
 app.MapControllers();
@@ -104,4 +92,24 @@ static void RegisterRepositoryServices(WebApplicationBuilder builder)
 
 	RegisterArtistQuery(builder, archiveDbConfig);
 	RegisterArtistCommand(builder, archiveDbConfig);
+}
+
+static string AddCors(WebApplicationBuilder builder)
+{
+	var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+	var guiCORSOrigin = builder.Configuration["CORSOrigins:Gui"];
+	if (guiCORSOrigin == null)
+		throw new Exception("CORSOrigins:Gui not found.");
+	builder.Services.AddCors(options =>
+	{
+		options.AddPolicy(name: myAllowSpecificOrigins,
+						  policy =>
+						  {
+							  policy
+							  	.WithOrigins(guiCORSOrigin)
+								.AllowAnyHeader()
+								.AllowAnyMethod();
+						  });
+	});
+	return myAllowSpecificOrigins;
 }

@@ -1,19 +1,45 @@
 using System.Net.Http.Json;
+using System.Text.Json;
+using ArchiveNet.Tests.Comparers;
+using ArchiveNet.Web.Api.Dtos;
+using AutoFixture;
+using AutoFixture.NUnit3;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Shouldly;
 
-namespace ArchiveNet.Tests.Unit;
+namespace ArchiveNet.Tests.Integration;
 
-//https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-7.0
 public class ArtControllerTests
 {
-	// [Test]
-	// public async Task AddValidArtistReturnsOk()
-	// {
-	// 	var webApp = new WebApplicationFactory<Program>();
-	// 	var client = webApp.CreateClient();
-	// 	var addResult = await client.PostAsJsonAsync("artist", new Artist(){
-			
-	// 	});
-	// 	//var addResult = await client.PostAsync("artist", ContentHelper);
-	// }
+	private static readonly Fixture Fixture = new Fixture();
+
+	[Test, AutoData]
+	public async Task PostValidArtReturnsOk(ArtistDto artist)
+	{
+		Environment.SetEnvironmentVariable("ARCHIVENET_API_DatabaseSettings__URL", "http://192.168.5.166:8003");
+            
+		var webApp = new WebApplicationFactory<Program>();
+		var client = webApp.CreateClient();
+		
+		await client.PutAsJsonAsync("artist", artist);
+
+		var art = Fixture
+					.Build<ArtDto>()
+					.With(art => art.Artist, artist)
+					.Create();
+		var addResult = await client.PostAsJsonAsync("art", art);
+		addResult.EnsureSuccessStatusCode();
+
+		var getResult = await client.GetAsync($"art/GetByArtistId/{art.Artist.Id}");
+		getResult.EnsureSuccessStatusCode();
+		
+		var contentStream = await getResult.Content.ReadAsStreamAsync();
+		var serializationOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+		var receivedArtDtos = await JsonSerializer.DeserializeAsync<IEnumerable<ArtDto>>(contentStream, serializationOptions);
+
+		receivedArtDtos!.ShouldBe(
+			new[] { art }, new ArtDtoComparer(), ignoreOrder: true
+		);
+	}
+
 }
