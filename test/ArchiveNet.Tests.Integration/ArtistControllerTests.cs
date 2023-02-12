@@ -10,9 +10,9 @@ namespace ArchiveNet.Tests.Integration;
 public class ArtistControllerTests
 {
 	[Test, AutoData]
-	public async Task UpdateValidArtistReturnsOk(ArtistDto artistDto)
+	public async Task ShouldUpdateArtist(ArtistDto artistDto)
 	{
-		Environment.SetEnvironmentVariable("ARCHIVENET_API_DatabaseSettings__URL", "http://192.168.5.166:8003");
+		TestSetUp.SetDatabaseUrl(); 
             
 		//for more complex set up use
 		// var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
@@ -35,6 +35,26 @@ public class ArtistControllerTests
 		var client = webApp.CreateClient();
 		
 		var addResult = await client.PutAsJsonAsync("artist", artistDto);
+		addResult.EnsureSuccessStatusCode();
+
+		var getResult = await client.GetAsync($"artist/{artistDto.Id}");
+		getResult.EnsureSuccessStatusCode();
+		
+		var contentStream = await getResult.Content.ReadAsStreamAsync();
+		var serializationOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+		var receivedArtistDto = await JsonSerializer.DeserializeAsync<ArtistDto>(contentStream, serializationOptions);
+		Assert.AreEqual(artistDto.Name, receivedArtistDto!.Name);
+	}
+
+	[Test, AutoData]
+	public async Task ShouldInsertArtist(ArtistDto artistDto)
+	{
+		//Environment.SetEnvironmentVariable("ARCHIVENET_API_DatabaseSettings__URL", "http://192.168.5.166:8003");
+        TestSetUp.SetDatabaseUrl(); 
+		var webApp = new WebApplicationFactory<Program>();
+		var client = webApp.CreateClient();
+		
+		var addResult = await client.PostAsJsonAsync("artist", artistDto);
 		addResult.EnsureSuccessStatusCode();
 
 		var getResult = await client.GetAsync($"artist/{artistDto.Id}");

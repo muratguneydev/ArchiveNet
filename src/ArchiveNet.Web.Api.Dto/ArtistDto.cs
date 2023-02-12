@@ -1,6 +1,4 @@
-﻿using ArchiveNet.Domain;
-
-namespace ArchiveNet.Web.Api.Dtos;
+﻿namespace ArchiveNet.Web.Api.Dtos;
 
 public record ArtistDto(int Id, NameDto Name, NameCollectionDto AlsoKnownAs)
 {
@@ -26,12 +24,4 @@ public record ArtistDto(int Id, NameDto Name, NameCollectionDto AlsoKnownAs)
 	{
 		
 	}
-
-	public ArtistDto(Artist artist)
-		: this(artist.Id, new NameDto(artist.Name))
-	{
-		
-	}
-
-	public Artist ToArtist() => new Artist(this.Id, this.Name.ToName(), this.AlsoKnownAs.ToNameCollection());
 }

@@ -13,9 +13,10 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\ArchiveNet.Repository\ArchiveNet.Repository.csproj" />
+		<ProjectReference Include="..\ArchiveNet.Web.Api.Dto\ArchiveNet.Web.Api.Dto.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-    	<InternalsVisibleTo Include="ArchiveNet.Tests.Integration" />
-</ItemGroup>
+		<InternalsVisibleTo Include="ArchiveNet.Tests.Integration" />
+	</ItemGroup>
 </Project>

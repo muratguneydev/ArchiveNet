@@ -27,7 +27,8 @@ public class ArtistCommand : IArtistCommand
 
 	public virtual Task Insert(Artist artist)
 	{
-		return this.amazonDynamoDBContext.SaveAsync(new ArtistRecord(artist));
+		//return this.amazonDynamoDBContext.SaveAsync(new ArtistRecord(artist));
+		return Update(artist);
 	}
 
 	public virtual async Task Update(Artist artist)

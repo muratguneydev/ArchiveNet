@@ -16,6 +16,7 @@ public class ArtDtoComparer : IEqualityComparer<ArtDto>
 
 	public int GetHashCode([DisallowNull] ArtDto obj)
 	{
-		throw new NotImplementedException();
+		return obj.Title.GetHashCode() + obj.EntryDateTime.GetHashCode() * 13 + obj.Rating.GetHashCode() * 17
+			+ obj.Uri.GetHashCode() * 19 + obj.Artist.GetHashCode() + new ArtistDtoComparer().GetHashCode(obj.Artist) * 23;
 	}
 }

@@ -1,5 +1,6 @@
 using ArchiveNet.Domain;
 using ArchiveNet.Web.Api.Dtos;
+using ArchiveNet.Web.Api.Converters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArchiveNet.Web.Api.Controllers;
@@ -23,7 +24,7 @@ public class ArtController : ControllerBase
     public async Task<IEnumerable<ArtDto>> GetAsync(int artistId)
 	{
 		return (await this.artQuery.GetAsync(artistId))
-			.Select(art => new ArtDto(art));
+			.Select(art => art.ToArtDto());
 	}
 
 	[Route("~/Art/GetByDateOffset/{dateOffset}")]
@@ -31,7 +32,7 @@ public class ArtController : ControllerBase
     public async Task<IEnumerable<ArtDto>> GetByDateOffset(int dateOffset)
 	{
 		return (await this.artQuery.GetByDateOffsetAsync(dateOffset))
-			.Select(art => new ArtDto(art));
+			.Select(art => art.ToArtDto());
 	}
 
 	//https://localhost:6124/Art

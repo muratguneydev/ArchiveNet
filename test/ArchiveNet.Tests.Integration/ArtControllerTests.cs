@@ -16,7 +16,7 @@ public class ArtControllerTests
 	[Test, AutoData]
 	public async Task PostValidArtReturnsOk(ArtistDto artist)
 	{
-		Environment.SetEnvironmentVariable("ARCHIVENET_API_DatabaseSettings__URL", "http://192.168.5.166:8003");
+		TestSetUp.SetDatabaseUrl(); 
             
 		var webApp = new WebApplicationFactory<Program>();
 		var client = webApp.CreateClient();

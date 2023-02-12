@@ -20,5 +20,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\ArchiveNet.Web.Api\ArchiveNet.Web.Api.csproj" />
+		<ProjectReference Include="..\ArchiveNet.Tests.Framework\ArchiveNet.Tests.Framework.csproj" />
+		<ProjectReference Include="../../src/ArchiveNet.Web.Api.Dto/ArchiveNet.Web.Api.Dto.csproj" />
 	</ItemGroup>
 </Project>
