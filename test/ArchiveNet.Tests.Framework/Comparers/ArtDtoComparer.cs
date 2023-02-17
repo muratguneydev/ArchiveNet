@@ -8,7 +8,7 @@ public class ArtDtoComparer : IEqualityComparer<ArtDto>
 	public bool Equals(ArtDto? x, ArtDto? y)
 	{
 		return x!.Title == y!.Title
-			&& x.EntryDateTime.TruncateMilliseconds() == y.EntryDateTime.TruncateMilliseconds()
+			&& new EntryDateTimeComparer().Equals(x.EntryDateTime, y.EntryDateTime)
 			&& x.Rating == y.Rating
 			&& x.Uri == y.Uri
 			&& new ArtistDtoComparer().Equals(x.Artist, y.Artist);

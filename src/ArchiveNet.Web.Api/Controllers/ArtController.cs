@@ -74,4 +74,23 @@ public class ArtController : ControllerBase
 			return NotFound(knfe.Message);
 		}
 	}
+
+	[HttpDelete]
+    public async Task<IActionResult> Delete(ArtDto art)
+	{
+		try
+		{
+			await this.artCommand.Delete(art.ToArt());
+			
+			return Ok("Art item deleted successfully.");
+		}
+		catch (ArgumentException ae)//catches ArgumentNullException too
+		{
+			return BadRequest(ae.Message);
+		}
+		catch (KeyNotFoundException knfe)
+		{
+			return NotFound(knfe.Message);
+		}
+	}
 }

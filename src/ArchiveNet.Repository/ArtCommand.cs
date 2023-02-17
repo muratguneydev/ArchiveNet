@@ -28,17 +28,39 @@ public class ArtCommand : IArtCommand
 
 	public virtual Task Insert(Art art)
 	{
-		return this.amazonDynamoDBContext.SaveAsync(new ArtRecord(art));
+		//this.amazonDynamoDBContext.SaveAsync(new ArtRecord(art));
+
+		var request = new UpdateItemRequest
+		{
+			TableName = TableName,
+			Key = new ArtPrimaryKey(art).Key,
+			ExpressionAttributeNames = new Dictionary<string,string>() {
+				{"#T", "Title"},
+				{"#R", "Rating"},
+				{"#E", "EntryDateTime"},
+				{"#U", "Uri"},
+			},
+			ExpressionAttributeValues = new Dictionary<string, AttributeValue>()
+			{
+				{":title", new AttributeValue { S = art.Title}},
+				{":rating", new AttributeValue { N = art.Rating.ToString()} },
+				{":entrydatetime", DateTimeUtcConverter.ToEntry(art.EntryDateTime) },
+				{":uri", new AttributeValue { S = art.Uri}}
+			},
+			UpdateExpression = "SET #T = :title, #R = :rating, #E = :entrydatetime, #U = :uri"
+		};
+
+		return this.amazonDynamoDBClient.UpdateItemAsync(request);
 	}
 
-	public virtual Task Insert(IEnumerable<Art> arts)
-	{
-		var batch = this.amazonDynamoDBContext.CreateBatchWrite<ArtRecord>();
-		batch.AddPutItems(arts.Select(art => new ArtRecord(art)));
-		return batch.ExecuteAsync();
-	}
+	// public virtual Task Insert(IEnumerable<Art> arts)
+	// {
+	// 	var batch = this.amazonDynamoDBContext.CreateBatchWrite<ArtRecord>();
+	// 	batch.AddPutItems(arts.Select(art => new ArtRecord(art)));
+	// 	return batch.ExecuteAsync();
+	// }
 
-	public virtual async Task Update(Art art)
+	public virtual Task Update(Art art)
 	{
 		//https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetItemCRUD.html#UpdateItemLowLevelDotNet
 		var request = new UpdateItemRequest
@@ -51,14 +73,27 @@ public class ArtCommand : IArtCommand
 			},
 			ExpressionAttributeValues = new Dictionary<string, AttributeValue>()
 			{
-				{":title",new AttributeValue { S = art.Title}},
-				{":rating",new AttributeValue {N = art.Rating.ToString()}}
+				{":title", new AttributeValue { S = art.Title}},
+				{":rating", new AttributeValue { N = art.Rating.ToString()} }
 			},
 			UpdateExpression = "SET #T = :title, #R = :rating"
 			//ReturnValues = "ALL_NEW" // Return all the attributes of the updated item.
 		};
-		var response = await this.amazonDynamoDBClient.UpdateItemAsync(request);
+
+		return this.amazonDynamoDBClient.UpdateItemAsync(request);
+		//var response = await this.amazonDynamoDBClient.UpdateItemAsync(request);
 		//response.Attributes to return the updated item's attributes. ReturnValues = "ALL_NEW"
 
+	}
+
+	public virtual Task Delete(Art art)
+	{
+		var request = new DeleteItemRequest
+		{
+			TableName = TableName,
+			Key = new ArtPrimaryKey(art).Key
+		};
+
+		return this.amazonDynamoDBClient.DeleteItemAsync(request);
 	}
 }

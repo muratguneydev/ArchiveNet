@@ -13,6 +13,11 @@ public class EncryptedArtCommandDecorator : IArtCommand
 		this.cryptor = cryptor;
 	}
 
+	public Task Delete(Art art)
+	{
+		return this.artCommand.Delete(new ArtEncryptedDecorator(art, this.cryptor));
+	}
+
 	public void Dispose()
 	{
 		this.artCommand.Dispose();
@@ -23,12 +28,12 @@ public class EncryptedArtCommandDecorator : IArtCommand
 		return this.artCommand.Insert(new ArtEncryptedDecorator(art, this.cryptor));
 	}
 
-	public Task Insert(IEnumerable<Art> arts)
-	{
-		return this.artCommand.Insert(
-			arts.Select(art => new ArtEncryptedDecorator(art, this.cryptor))
-		);
-	}
+	// public Task Insert(IEnumerable<Art> arts)
+	// {
+	// 	return this.artCommand.Insert(
+	// 		arts.Select(art => new ArtEncryptedDecorator(art, this.cryptor))
+	// 	);
+	// }
 
 	public Task Update(Art art)
 	{
